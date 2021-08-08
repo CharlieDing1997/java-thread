@@ -1,0 +1,29 @@
+当多个线程操作同一个对象时，就会出现线程安全问题，被多个线程同时操作的对象数据可能会发生错误。线程同步可以保证在同一个时刻该对象只被一个线程访问。
+
+Synchronized
+关键字 synchronized 可以修饰方法或者以同步块的形式来进行使用，它确保多个线程在同一个时刻，只能有一个线程处于方法或者同步块中，保证了线程对变量访问的可见性和排他性。它有三种使用方法：
+
+对普通方式使用，将会锁住当前实例对象。
+对静态方法使用，将会锁住当前类的 Class 对象。
+对代码块使用，将会锁住代码块中的对象。
+
+三种锁：
+public class SynchronizedDemo {
+    private static Object lock = new Object();
+
+    public static void main(String[] args) {
+        //同步代码块 锁住lock
+        synchronized (lock) {
+            //doSomething
+        }
+    }
+
+    //静态同步方法  锁住当前类class对象
+    public synchronized static void staticMethod(){
+
+    }
+    //普通同步方法  锁住当前实例对象
+    public synchronized void memberMethod() {
+
+    }
+}
